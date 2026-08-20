@@ -10,6 +10,7 @@ export default function Contact() {
       label: 'Email',
       value: profile.email,
       href: `mailto:${profile.email}`,
+      wide: true,
     },
     profile.socials.linkedin && {
       icon: FiLinkedin,
@@ -28,7 +29,13 @@ export default function Contact() {
       label: 'Location',
       value: profile.location,
     },
-  ].filter(Boolean) as { icon: typeof FiMail; label: string; value: string; href?: string }[]
+  ].filter(Boolean) as {
+    icon: typeof FiMail
+    label: string
+    value: string
+    href?: string
+    wide?: boolean
+  }[]
 
   return (
     <Section
@@ -46,7 +53,7 @@ export default function Contact() {
                 <Icon size={18} />
               </div>
               <p className="mt-4 text-sm text-text-muted">{card.label}</p>
-              <p className="mt-1 break-words font-medium text-heading">{card.value}</p>
+              <p className="mt-1 truncate font-medium text-heading">{card.value}</p>
             </>
           )
 
@@ -60,6 +67,7 @@ export default function Contact() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
               transition={{ duration: 0.4, delay: i * 0.06 }}
+              className={card.wide ? 'sm:col-span-2' : undefined}
             >
               {card.href ? (
                 <a href={card.href} target="_blank" rel="noreferrer" className={className}>
