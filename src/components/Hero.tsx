@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { FiArrowDown, FiDownload } from 'react-icons/fi'
 import { profile } from '../data/resume'
+import { useTypewriter } from '../hooks/useTypewriter'
 
 const terminalLines = [
   '$ whoami',
@@ -11,11 +12,15 @@ const terminalLines = [
   'Available for opportunities',
 ]
 
+const greetings = [`I'm ${profile.name.split(' ')[0]}`, `I'm a ${profile.role}`]
+
 export default function Hero() {
   const initials = profile.name
     .split(' ')
     .map((n) => n[0])
     .join('')
+
+  const typedGreeting = useTypewriter(greetings)
 
   return (
     <section
@@ -34,7 +39,8 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
         >
           <p className="font-mono text-sm font-semibold uppercase tracking-widest text-accent">
-            Hi, I'm {profile.name.split(' ')[0]}
+            Hi, {typedGreeting}
+            <span className="typewriter-cursor">|</span>
           </p>
           <h1 className="mt-3 text-4xl font-extrabold leading-tight text-heading sm:text-5xl lg:text-6xl">
             {profile.role} building
