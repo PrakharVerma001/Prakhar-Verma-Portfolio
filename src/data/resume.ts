@@ -9,7 +9,7 @@ export const profile = {
     'I build and automate the infrastructure behind reliable software — CI/CD pipelines, container orchestration, and observability at scale.',
   location: 'Hyderabad, India',
   // TODO: replace with real values once provided
-  email: 'your.email@example.com',
+  email: 'prakharv.official@gmail.com',
   phone: '',
   socials: {
     github: '',
