@@ -34,9 +34,9 @@ export default function Footer() {
           {profile.email && (
             <a
               href={`mailto:${profile.email}`}
-              aria-label="Email"
-              className="transition-colors hover:text-accent"
+              className="flex items-center gap-1.5 transition-colors hover:text-accent"
             >
+              Ping me
               <FiMail size={18} />
             </a>
           )}

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { FiArrowDown, FiDownload, FiGithub, FiLinkedin, FiMail } from 'react-icons/fi'
+import { FiArrowDown, FiDownload } from 'react-icons/fi'
 import { profile } from '../data/resume'
 
 const terminalLines = [
@@ -62,40 +62,6 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 text-sm font-semibold text-text-muted transition-colors hover:text-accent"
               >
                 <FiDownload /> Resume
-              </a>
-            )}
-          </div>
-
-          <div className="mt-10 flex items-center gap-5">
-            {profile.socials.github && (
-              <a
-                href={profile.socials.github}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="GitHub"
-                className="text-text-muted transition-colors hover:text-accent"
-              >
-                <FiGithub size={22} />
-              </a>
-            )}
-            {profile.socials.linkedin && (
-              <a
-                href={profile.socials.linkedin}
-                target="_blank"
-                rel="noreferrer"
-                aria-label="LinkedIn"
-                className="text-text-muted transition-colors hover:text-accent"
-              >
-                <FiLinkedin size={22} />
-              </a>
-            )}
-            {profile.email && (
-              <a
-                href={`mailto:${profile.email}`}
-                aria-label="Email"
-                className="text-text-muted transition-colors hover:text-accent"
-              >
-                <FiMail size={22} />
               </a>
             )}
           </div>
