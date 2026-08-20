@@ -6,10 +6,13 @@ import Skills from './components/Skills'
 import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
+import CircuitBackground from './components/CircuitBackground'
+import { FEATURES } from './config'
 
 function App() {
   return (
-    <div className="min-h-screen bg-bg">
+    <div className="min-h-screen">
+      {FEATURES.circuitBackground && <CircuitBackground />}
       <Navbar />
       <main>
         <Hero />
