@@ -27,7 +27,7 @@ export default function Hero() {
       id="home"
       className="relative flex min-h-screen items-center overflow-hidden pt-24"
     >
-      <div className="pointer-events-none absolute inset-0 -z-10">
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         <div className="absolute left-1/2 top-[-10%] h-[420px] w-[420px] -translate-x-1/2 rounded-full bg-accent/10 blur-[120px]" />
         <div className="absolute right-0 top-1/3 h-[320px] w-[320px] rounded-full bg-accent-2/10 blur-[100px]" />
       </div>
