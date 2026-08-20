@@ -12,7 +12,11 @@ const terminalLines = [
   'Available for opportunities',
 ]
 
-const greetings = [`I'm ${profile.name.split(' ')[0]}`, `I'm a ${profile.role}`]
+const greetings = [
+  `I'm ${profile.name.split(' ')[0]}`,
+  `I'm a ${profile.role}`,
+  "Let's Build Something Together",
+]
 
 export default function Hero() {
   const initials = profile.name
@@ -40,7 +44,7 @@ export default function Hero() {
         >
           <p className="font-mono text-sm font-semibold uppercase tracking-widest text-accent">
             Hi, {typedGreeting}
-            <span className="typewriter-cursor">|</span>
+            <span className="typewriter-cursor" />
           </p>
           <h1 className="mt-3 text-4xl font-extrabold leading-tight text-heading sm:text-5xl lg:text-6xl">
             {profile.role} building

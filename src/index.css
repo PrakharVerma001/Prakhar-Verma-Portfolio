@@ -54,7 +54,11 @@ body {
 
 .typewriter-cursor {
   display: inline-block;
+  width: 0.55em;
+  height: 1em;
   margin-left: 2px;
+  background: currentColor;
+  vertical-align: -0.15em;
   animation: cursor-blink 0.9s step-end infinite;
 }
 

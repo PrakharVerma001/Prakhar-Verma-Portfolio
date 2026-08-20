@@ -10,32 +10,42 @@ export function useTypewriter(
   words: string[],
   { typingSpeed = 70, deletingSpeed = 40, pauseTime = 1400 }: Options = {},
 ) {
-  const [text, setText] = useState('')
   const [wordIndex, setWordIndex] = useState(0)
+  const [subIndex, setSubIndex] = useState(0)
   const [deleting, setDeleting] = useState(false)
 
   useEffect(() => {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-      setText(words[0] ?? '')
       return
     }
 
-    const current = words[wordIndex % words.length]
-    let timeout: number
+    const current = words[wordIndex % words.length] ?? ''
+    let delay = deleting ? deletingSpeed : typingSpeed
 
-    if (!deleting && text.length < current.length) {
-      timeout = window.setTimeout(() => setText(current.slice(0, text.length + 1)), typingSpeed)
-    } else if (!deleting && text.length === current.length) {
-      timeout = window.setTimeout(() => setDeleting(true), pauseTime)
-    } else if (deleting && text.length > 0) {
-      timeout = window.setTimeout(() => setText(current.slice(0, text.length - 1)), deletingSpeed)
-    } else {
-      setDeleting(false)
-      setWordIndex((i) => (i + 1) % words.length)
+    if (!deleting && subIndex === current.length) {
+      delay = pauseTime
     }
 
-    return () => window.clearTimeout(timeout)
-  }, [text, deleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime])
+    const timeout = window.setTimeout(() => {
+      if (!deleting && subIndex < current.length) {
+        setSubIndex((n) => n + 1)
+      } else if (!deleting && subIndex === current.length) {
+        setDeleting(true)
+      } else if (deleting && subIndex > 0) {
+        setSubIndex((n) => n - 1)
+      } else {
+        setDeleting(false)
+        setWordIndex((i) => (i + 1) % words.length)
+      }
+    }, delay)
 
-  return text
+    return () => window.clearTimeout(timeout)
+  }, [subIndex, deleting, wordIndex, words, typingSpeed, deletingSpeed, pauseTime])
+
+  if (typeof window !== 'undefined' && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    return words[0] ?? ''
+  }
+
+  const current = words[wordIndex % words.length] ?? ''
+  return current.slice(0, subIndex)
 }
