@@ -51,24 +51,3 @@ body {
 .font-mono {
   font-family: var(--font-mono);
 }
-
-.circuit-pulse {
-  stroke-dasharray: 60 3000;
-  stroke-dashoffset: 3060;
-  opacity: 0.95;
-  filter: drop-shadow(0 0 6px currentColor) drop-shadow(0 0 14px currentColor);
-  animation: circuit-flow 5s linear infinite;
-}
-
-@keyframes circuit-flow {
-  to {
-    stroke-dashoffset: 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .circuit-pulse {
-    animation: none;
-    opacity: 0;
-  }
-}
