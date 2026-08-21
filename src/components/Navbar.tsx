@@ -17,35 +17,37 @@ export default function Navbar() {
   const [active, setActive] = useState('')
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 8)
+    const sectionIds = links.map((link) => link.href.slice(1))
+
+    const onScroll = () => {
+      setScrolled(window.scrollY > 8)
+
+      const viewportMid = window.innerHeight / 2
+      let current = ''
+      for (const id of sectionIds) {
+        const el = document.getElementById(id)
+        if (!el) continue
+        const rect = el.getBoundingClientRect()
+        if (rect.top <= viewportMid && rect.bottom >= viewportMid) {
+          current = `#${id}`
+          break
+        }
+      }
+      setActive(current)
+    }
+
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
+    window.addEventListener('resize', onScroll)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener('resize', onScroll)
+    }
   }, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])
-
-  useEffect(() => {
-    const sections = links
-      .map((link) => document.querySelector(link.href))
-      .filter((el): el is Element => el !== null)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) {
-            setActive(`#${entry.target.id}`)
-          }
-        }
-      },
-      { rootMargin: '-45% 0px -45% 0px' },
-    )
-
-    sections.forEach((section) => observer.observe(section))
-    return () => observer.disconnect()
-  }, [])
 
   return (
     <header
