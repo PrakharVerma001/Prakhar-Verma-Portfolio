@@ -7,6 +7,7 @@ import Education from './components/Education'
 import Contact from './components/Contact'
 import Footer from './components/Footer'
 import CircuitBackground from './components/CircuitBackground'
+import ScrollToTop from './components/ScrollToTop'
 import { FEATURES } from './config'
 
 function App() {
@@ -23,6 +24,7 @@ function App() {
         <Contact />
       </main>
       <Footer />
+      <ScrollToTop />
     </div>
   )
 }

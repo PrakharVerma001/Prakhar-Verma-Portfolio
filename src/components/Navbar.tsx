@@ -14,6 +14,7 @@ const links = [
 export default function Navbar() {
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [active, setActive] = useState('')
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 8)
@@ -25,6 +26,26 @@ export default function Navbar() {
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
   }, [open])
+
+  useEffect(() => {
+    const sections = links
+      .map((link) => document.querySelector(link.href))
+      .filter((el): el is Element => el !== null)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActive(`#${entry.target.id}`)
+          }
+        }
+      },
+      { rootMargin: '-45% 0px -45% 0px' },
+    )
+
+    sections.forEach((section) => observer.observe(section))
+    return () => observer.disconnect()
+  }, [])
 
   return (
     <header
@@ -42,7 +63,9 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-text-muted transition-colors hover:text-accent"
+                className={`text-sm font-medium transition-colors hover:text-accent ${
+                  active === link.href ? 'text-accent' : 'text-text-muted'
+                }`}
               >
                 {link.label}
               </a>
@@ -82,7 +105,9 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={() => setOpen(false)}
-                    className="block rounded-md px-2 py-3 text-base font-medium text-text transition-colors hover:bg-surface hover:text-accent"
+                    className={`block rounded-md px-2 py-3 text-base font-medium transition-colors hover:bg-surface hover:text-accent ${
+                      active === link.href ? 'text-accent' : 'text-text'
+                    }`}
                   >
                     {link.label}
                   </a>
