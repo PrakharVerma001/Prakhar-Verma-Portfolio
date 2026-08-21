@@ -8,7 +8,7 @@ type Options = {
 
 export function useTypewriter(
   words: string[],
-  { typingSpeed = 70, deletingSpeed = 40, pauseTime = 1400 }: Options = {},
+  { typingSpeed = 100, deletingSpeed = 40, pauseTime = 2000 }: Options = {},
 ) {
   const [wordIndex, setWordIndex] = useState(0)
   const [subIndex, setSubIndex] = useState(0)

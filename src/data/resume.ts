@@ -10,7 +10,7 @@ export const profile = {
   location: 'Hyderabad, India',
   // TODO: replace with real values once provided
   email: 'prakharv.official@gmail.com',
-  phone: '',
+  phone: '+91-9670621737',
   socials: {
     github: '',
     linkedin: '',
@@ -51,10 +51,8 @@ export const experience: ExperienceEntry[] = [
     ],
     stack: [
       'Azure Durable Functions',
-      'Azure DevOps',
-      'Azure Automation',
-      'PowerShell',
-      'ServiceNow',
+      'PowerShell Scripting',
+      'ServiceNow Integration',
       'Tanium',
       'CrowdStrike Falcon',
       'REST APIs',
@@ -190,8 +188,8 @@ export const skillCategories: SkillCategory[] = [
 ]
 
 export const impactStats = [
+  { value: '3+', label: 'years of Industrial Experience' },
   { value: '40%', label: 'Faster deployments via CI/CD optimization' },
-  { value: '35%', label: 'Lower streaming latency with MinIO' },
   { value: '50%', label: 'Faster infra rollout via Terraform automation' },
   { value: '99.9%', label: 'Uptime maintained in production' },
 ]
